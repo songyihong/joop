@@ -1,0 +1,46 @@
+图形类
+class org.zhuozhuo.graphics(string || element || zhuozhuo.element.*)            构造包装画图区域节点
+属性
+    zhuozhuo.element.*  element                                                 画板对象
+    string              originalHTML                                            画板节点原来的html内容
+    int                 cx                                                      偏移x
+    int                 cy                                                      偏移y
+    int                 width                                                   画板宽度
+    int                 height                                                  画板高度
+    int                 pen.x                                                   画笔x坐标
+    int                 pen.y                                                   画笔y坐标
+    int                 pen.size                                                画笔大小
+    string              pen.color                                               画笔颜色
+    float               pen.alpha                                               画笔透明度0-1
+    string              pen.font                                                文字颜色
+    object              canvas                                                  canvas 画板
+    object              vml                                                     vml画板
+方法
+    void                setPen(object)                                          设置画笔 {} 属性请参考 this.pen
+    int                 getCurrentCX(x)                                         获取当前偏移x this.cx+x
+    int                 getCurrentCY(y)                                         获取当前偏移y this.cy+y
+    object              getPen()                                                获取画笔
+    void                clear()                                                 清空画板
+    void                fillRect(x,y,w,h)                                       填充区域
+    void                drawArc(x, y, radius, startAngle, endAngle)             画圆
+    void                drawDot(x, y)                                           画点
+    void                drawLine(x1,y1,x2,y2)                                   画线
+    void                drawRect(x,y,width,height)                              画矩形
+    void                drawOval(x,y,width,height)                              画椭圆
+    void                lineTo(x,y)                                             画线到制定坐标
+    void                moveTo(x,y)                                             移动画笔到指定坐标
+    void                drawPolygon(xpoints,ypoints)                            画多边形
+    void                drawString(str,x,y)                                     写字
+
+class org.zhuozhuo.graphics3d extends org.zhuozhuo.graphics                     3d图形类
+    属性
+    array               transform3d                                             3d元素数组 3d世界
+    方法
+    int                 add3dDot(x,y,z)                                         添加3d点 返回新添加的点 索引 0开始
+    int                 add3dLine(x,y,z)                                        添加3d线 返回新增加的点 索引
+    object              add3dCube(x,y,z,width,height,length)                    添加3d立方体 返回新增加的立方体索引 {begin,end}
+    void                show3d(d)                                               显示transform3d内容投影
+    P2D                 translate2d(P3D,D)                                      投影到2d
+    void                rotationx(r[,object])                                   旋转元素 不指定为旋转全部
+    void                rotationy(r[,object])                                   旋转元素 不指定为旋转全部
+    void                rotationz(r[,object])                                   旋转元素 不指定为旋转全部

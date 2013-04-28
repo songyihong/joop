@@ -1,0 +1,8 @@
+cookie(name[,value[,options]])
+name cookie名称  如只有名称则是读取cookie 加参数则设置 为空返回cookie串
+value 设置cookie指 设置后返回cookie串
+options 可选项
+   expires	 过期时间 -1 / number /dateString
+   path
+   domain
+   secure

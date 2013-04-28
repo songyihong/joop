@@ -1,0 +1,9 @@
+/* CSS Document */
+body,td,th,div{font-size:12px}
+a:link,a:visited,a:hover,a:active{text-decoration:none}
+ul,li{list-style:none}
+div,img{border-width:0px}
+img{vertical-align:top}
+form{display:inline}
+table{border-collapse:collapse}
+*{margin:0px;padding:0px}

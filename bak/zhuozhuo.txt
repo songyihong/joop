@@ -1,0 +1,217 @@
+
+对象目录
+float   zhuozhuo.version                                                        版本(3.0起增加名称空间)
+object  zhuozhuo.namespace(namespace)                                           注册名称空间 并且返回此注册名称空间对象
+class   zhuozhuo.zclass(class...)                                               创建类或继承类,允许多继承(查看注解)
+object  zhuozhuo.getById(argv...)                                               根据一个或多个参数获取并包装对象(查看注解) 单参数返回zdom多参数返回array
+object  zhuozhuo.getBySelector(String selectors[, isAll])                       根据css规则包装输出ZDOM数组 如果isAll存在且为1或true则输出zdom数组,否则只输出一个对象
+
+浏览器信息
+string  zhuozhuo.browser.version                                                浏览器内核版本(IE, Opera显示浏览器版本)
+bool    zhuozhuo.browser.kernel.isTrident                                       浏览器内核 IE
+bool    zhuozhuo.browser.kernel.isGecko                                         浏览器内核 Firefox,MozillaSuite/SeaMonkey,Mozilla,Thunderbird
+bool    zhuozhuo.browser.kernel.isPresto                                        浏览器内核 Opera
+bool    zhuozhuo.browser.kernel.isWebKit                                        浏览器内核 Safari
+bool    zhuozhuo.browser.kernel.isKHTML                                         浏览器内核 Konqueror
+bool    zhuozhuo.browser.features.isXPath                                       是否支持xpath
+bool    zhuozhuo.browser.features.isSelectorsAPI                                是否支持css选择器
+
+工具
+string  zhuozhuo.util.getClass(object)                                          返回对象类别字串
+object  zhuozhuo.util.extend(destination, source)                               source对象合并到destination上 相同的方法或涵数覆盖 返回 destination
+object  zhuozhuo.util.clone(object)                                             返回object的浅表复制
+bool    zhuozhuo.util.isArray(object)                                           判断object是否数组
+bool    zhuozhuo.util.isFunction(object)                                        判断object是否函数
+bool    zhuozhuo.util.isNumber(object)                                          判断object是否数字
+bool    zhuozhuo.util.isUndefined(object)                                       判断object是否未定义
+bool    zhuozhuo.util.isString(object)                                          判断object是否是字符串
+array   zhuozhuo.util.toArray(iteralbe)                                         把iteralbe转换为数组
+void    zhuozhuo.util.fnEmpty()                                                 空function函数
+bool    zhuozhuo.util.fnTrue()                                                  返回true的函数
+string  zhuozhuo.util.param(object)                                             序列化object
+object  zhuozhuo.util.trys(Function...)                                         执行多个function并返回最早的正确结果
+
+String  zhuozhuo.util.string.trim(value)                                        去除左右两边的空格
+Integer zhuozhuo.util.string.wlength(value)                                     按英文长度返回字符串长度,一个汉字相当于两个英文字符
+String  zhuozhuo.util.string.wsubstr(value, wstart[, wlength])                  按英文长度从开始位置截取指定长度字符串 一个汉字相当于两个英文字符
+String  zhuozhuo.util.string.wsubstring(value, wstart, wend)                    按英文长度截取指定范围的字符串
+
+Array   zhuozhuo.util.array.each(array, Function handler(Object object, Integer index))
+                                                                                迭代数组 并 相同的参数，面向所有的元素。返回调用方法的结果。第一参数数组值,第二个参数索引,返回执行结果数组
+Array   zhuozhuo.util.array.uniq(array)                                         返回不重复的数组
+Integer zhuozhuo.util.array.indexOf(array Object object[, Integer startIndex])  在数组中查找指定元素的位置,找不到返回 -1 可选参数 搜索的起始索引。空数组中 0（零）为有效值。
+
+事件包装
+new zhuozhuo.event.Event(event)
+object  .event                                                                  被包装事件对象(例:window.event)
+bool    .altKey                                                                 返回当事件被触发时，"ALT" 是否被按下。
+bool    .ctrlKey                                                                返回当事件被触发时，"CTRL" 键是否被按下。
+bool    .shiftKey                                                               返回当事件被触发时，"SHIFT" 键是否被按下。
+int     .keyCode                                                                设置或获取与导致事件的按键关联的 Unicode 按键代码。
+int     .clientX                                                                返回当事件被触发时，鼠标指针的水平坐标。
+int     .clientY                                                                返回当事件被触发时，鼠标指针的垂直坐标。
+int     .screenX                                                                返回当某个事件被触发时，鼠标指针的水平坐标。
+int     .screenY                                                                返回当某个事件被触发时，鼠标指针的垂直坐标。
+int     .layerX                                                                 获取鼠标指针位置相对于触发事件的对象的 x 坐标。
+int     .layerY                                                                 获取鼠标指针位置相对于触发事件的对象的 y 坐标。
+DOM     .relatedTarget                                                          返回与事件的目标节点相关的节点。(未包装)
+int     .detail                                                                 获取滚轮按钮滚动的距离和方向。
+DOM     .target                                                                 返回触发此事件的元素（事件的目标节点）。(未包装)
+DOM     .currentTarget                                                          返回其事件监听器触发该事件的元素。(未包装)
+string  .type                                                                   返回当前 Event 对象表示的事件的名称。
+ZDOM    .getTarget()                                                            返回触发事件对象(已包装 zhuozhuo.element.*)
+Event   .preventDefault()                                                       取消事件的默认动作 返回当前事件包装
+Event   .stopPropagation()                                                      停止事件冒泡 返回当前事件包装
+
+事件监听
+new zhuozhuo.event.Listener()
+array   .listeners                                                              事件监听队列
+void    .addListener(eventName, handler)                                        添加事件(事件名,处理函数)
+void    .removeListener(eventName, handler)                                     添加事件(事件名,处理函数)
+void    .notifyEvent(eventName, eventObject)                                    通知事件(事件名,希望传递的事件参数对象)
+
+节点包装
+array   zhuozhuo.element.zdomcache                                              包装对象缓存　此对象用于重复包装同一节点
+void    zhuozhuo.element.syncCache()                                            同步对象缓存 触发空对象finalize() 释放事件
+ZDOM    zhuozhuo.element.extend(HTMLElement)                                    包装节点 返回已包装element对象
+ZDOM    zhuozhuo.element.createTable(rows, cells)                               创建表格
+ZDOM    zhuozhuo.element.createElement(tagName)                                 创建标签
+object  zhuozhuo.element.view.getDimensions()                                   获取尺寸 {Integer pageWidth,Integer pageHeight,Integer screenWidth,Integer screenHeight}
+object  zhuozhuo.element.view.getScrollOffsets()                                获取滚动条偏移位置 {Integer top,Integer left}
+
+css规则元素包装
+array   zhuozhuo.element.getElementsBySelector(selectors, ZDOM)                 使用css3选择符号
+
+new zhuozhuo.element.window(DOM) extneds zhuozhuo.event.Listener                window节点包装类
+DOM     .element                                                                被包装节点
+array   .eventsmaps                                                             包装事件影射 {key,callback}
+ZDOM    .addEvent(eventName, handler)                                           添加事件 返回当前包装实例
+ZDOM    .removeEvent(eventName, handler)                                        删除事件 返回当前包装实例
+ZDOM    .startCapture()                                                         开始捕获鼠标 返回当前包装实例
+ZDOM    .stopCapture()                                                          停止捕获鼠标 返回当前包装实例
+
+zhuozhuo.element.document extends zhuozhuo.element.window                       通用文档节点包装类
+new zhuozhuo.element.document(DOM)
+object  .getBySelector(selectors[, isAll])                                      使用当前对象调用 zhuozhuo.getBySelector
+bool    .hasClassName(className)                                                判断是否存在指定样式类名
+ZDOM    .addClassName(className)                                                添加指定名称样式定义 返回当前包装实例
+ZDOM    .removeClassName(className)                                             删除指定名称样式定义 返回当前包装实例
+bool    .hasAttribute(attributeName)                                            判断是否存在指定属性
+ZDOM    .setAttribute(name, value)                                              设置指定名称属性 返回当前包装实例
+ZDOM    .setAttribute(attributes)                                               设置指定名称属性 {n0:v0,n1:v1....} 返回当前包装实例
+object  .getAttribute(attributeName)                                            获取属性值
+ZDOM    .setStyle(name, value)                                                  设置样式 返回当前包装实例
+ZDOM    .setStyle(styles)                                                       设置样式 {n0:v0,n1:v1....} 返回当前包装实例
+string  .getStyle(styleName)                                                    获取样式
+ZDOM    .setAlphaImage(imgurl)                                                  设置背景图 返回当前包装实例
+string  .getAlphaImage()                                                        获取背景图
+ZDOM    .setOpacity(opacity)                                                    设置透明度 0 - 1 返回当前包装实例
+float   .getOpacity()                                                           获取透明度
+ZDOM    .setText(value)                                                         设置节点text内容 返回当前包装实例
+string  .getText()                                                              获取节点text内容
+ZDOM    .setHTML(value)                                                         设置节点html内容 返回当前包装实例
+string  .getHTML()                                                              获取节点html内容
+ZDOM    .show(value)                                                            显示节点 value 默认为 "block" 返回当前包装实例
+ZDOM    .hide()                                                                 隐藏节点 返回当前包装实例
+ZDOM    .toggle(value)                                                          显示或隐藏节点 返回当前包装实例
+object  .getOffsets()                                                           获取放置偏移坐标 {left, top}
+object  .getDimensions()                                                        获取尺寸{width, height}
+ZDOM    .remove()                                                               删除自己 返回当前包装实例 触发一次同步缓村操作
+ZDOM    .append(ZDOM)                                                           附加结点返回被附加节点 返回新节点
+string  .append(string html)                                                    附加文本内容代码
+ZDOM    .insert(sWhere, ZDOM)                                                   插入节点sWhere=beforeBegin|afterBegin|beforeEnd|afterEnd返回新插入的节点
+ZDOM    .animate(Object styles, int frames, int delay, int factor, fn callback(ZDOM node, int frames))
+                                                                                自定义动画 (value:目的样式属性,frames:帧数,delay:每帧时间,factor:渐变因子(为"average"或非数字时 等于平均变化,否则每次按照此设置除法递减),callback:回调参数)
+                                                                                callback 调用有两个参数node和frames node=被执节点,frames=当前倒数帧数 frames到1 到数 为1表示最后一帧 0表示结束
+ZDOM    .animate(Object styles, int frames, int delay, fn callback)             自定义动画
+ZDOM    .animate(Object styles, int frames, fn callback)                        自定义动画
+ZDOM    .animate(Object styles, fn callback)                                    自定义动画
+ZDOM    .animate(Object styles)                                                 自定义动画
+................................................................................
+new zhuozhuo.element.tag.FORM extends zhuozhuo.element.document
+new zhuozhuo.element.tag.INPUT extends zhuozhuo.element.document                表单元素包装
+string  .getValue()                                                             获取值
+ZDOM    .setValue(string value)                                                 设置值 返回当前包装
+................................................................................
+new zhuozhuo.element.tag.TEXTAREA extends zhuozhuo.element.tag.INPUT            多行文本输入包装
+................................................................................
+new zhuozhuo.element.tag.SELECR extends zhuozhuo.element.tag.INPUT              选择筐输入包装
+
+--------------------------------------------------------------------------------
+ajax对象
+zhuozhuo.ajax.Response
+构造:
+    new zhuozhuo.ajax.Response(XMLHTTP XmlHttp)                                 包装构建一个新的 AjaxResponse 对象。
+属性:
+    XMLHTTP     xmlHttp                                                         被封装Xmlhttp对象
+    String      text                                                            以文本形式获取返回内容
+    XmlDocument xml                                                             以xml形式获取返回内容
+    String      length                                                          获取返回长度
+    String      type                                                            获取内容类型
+    Integer     status                                                          状态码
+方法:
+    String      getAllHeaders()                                                 获取所有返回头
+    String      getHeader(String header)                                        获取指定名称返回头
+---------------------------------------------------------------------------------------------------------
+类 zhuozhuo.ajax.Request extends zhuozhuo.event.Listener                        继承自事件监听
+构造:
+    new zhuozhuo.ajax.Request()                                                 构建一个新的 Ajax 对象。
+属性:
+    XMLHTTP     xmlHttp                                                         此ajax类被包装xmlhttp对象
+    encoding = "UTF-8"                                                          编码
+方法:
+    void        open(String url, String method = "POST", Boolean async = true, String user = null, String password = null)
+                                                                                创建一个新的http请求，并指定此请求的方法、URL以及验证信息
+    void        setHeader(String header, String value)                          设置请求头 (POST打开会自动设置必须header)
+    void        setHeaders(Object headers)                                      设置请求头
+    void        send(Object varBody = {})                                       发送 带数据的请求
+    void        abort()                                                         取消当前请求
+事件:
+    事件名      参数
+    request   Integer readyState                                                读取状态 状态 0-4 0 (未初始化) 1 (初始化) 2 (发送数据) 3 (数据传送中) 4 (完成);
+    success   Ajax.Response response                                            请求成功 请自行包装xmlhttp
+    failure   Ajax.Response response                                            请求失败 请自行包装xmlhttp
+GET请求
+zhuozhuo.ajax.Request zhuozhuo.ajax.get({
+                String url:"",                                                  请求url
+                Object data:null,                                               请求数据
+                boolean async:true,                                             同步异步
+                String user:null,                                               用户名
+                String password:null,                                           密码
+                Function request:ZHUOZHUO.FALSE(int readyState),                请求中
+                Function success:ZHUOZHUO.FALSE(Ajax.Response response),        成功
+                Function failure:ZHUOZHUO.FALSE(Ajax.Response response)});      失败
+POST请求
+zhuozhuo.ajax.Request zhuozhuo.ajax.post({参数同Ajax.get});
+
+------------------------------------------------------------------------------------------------------------------------------
+注解:
+class   zhuozhuo.zclass([superclass,...]currentclass)
+    创建javascript类,允许多重继承,并且增加构造和完成函数
+    例:
+        var newClass = zhuozhuo.zclass(超类1..,超类N,{ 类方法名:函数体});
+        var newClass1= zhuozhuo.zclass({ 类方法名:函数体});
+        构造函数
+            initialize()
+        调用父构造函数
+            类名.superclass.initialize.apply(this, arguments)
+        完成函数
+            finalize()
+        调用父完成函数
+            类名.superclass.finalize.apply(this)
+        调用父其他函数
+            类名.superclass.方法名.apply(this, arguments)
+            类名.superclass.方法名.call(this[, arg0[, arg1]...])
+        其他说明
+            多个父类时,按输入类名顺序,后面的方法覆盖前面类的同名方法
+
+object  getById(argv1 [, ...[, argvN]])
+        根据一个或多个参数获取并包装对象,
+        参数类型可以为 HTMLElment,string,或 zhuozhuo.element.*, zhuozhuo.element.tag.*的实例
+        如类型正确,返回包装后的元素实例.多个实例集合为数组
+
+DOM,ZDOM 类型
+        DOM:未包装DHTMLElement对象
+        ZDOM:已包装的DHTMLElement实例
+
+

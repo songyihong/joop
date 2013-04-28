@@ -1,0 +1,41 @@
+/* CSS Document */
+.onShow
+{
+    background:url(../../zhuozhuo.org/formValidator/images/reg1.gif) no-repeat;
+    padding-left:25px; 
+    font-size: 12px;
+    line-height:22px;
+    vertical-align:middle;
+}
+.onFocus
+{
+    background:#E9F0FF url(../../zhuozhuo.org/formValidator/images/reg2.gif) no-repeat;
+    padding-left:25px; 
+    font-size: 12px;
+    line-height:22px; 
+    vertical-align:middle;
+}
+.onError
+{
+    background:#FFF2E9 url(../../zhuozhuo.org/formValidator/images/reg3.gif) no-repeat;
+    padding-left:25px;
+    font-size: 12px;
+    line-height:22px;
+    vertical-align:middle;
+}
+.onSuccess
+{
+    background:#E9FFEB url(../../zhuozhuo.org/formValidator/images/reg4.gif) no-repeat;
+    padding-left:25px;
+    font-size: 12px;
+    line-height:22px;
+    vertical-align:middle;
+}
+.onLoad
+{
+    background:#E9FFEB url(../../zhuozhuo.org/formValidator/images/loading.gif) no-repeat 3px 3px;
+    padding-left:25px;
+    font-size: 12px;
+    line-height:22px;
+    vertical-align:middle;
+} 

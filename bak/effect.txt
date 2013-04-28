@@ -1,0 +1,230 @@
+类 Point 2D坐标      表示点坐标
+构造:
+    new Point()                                                                 在坐标空间的原点 (0,0) 构造
+    new Point(Point pt)                                                         构造并初始化一个与指定的 Coordinates2D 对象具有相同位置
+    new Point(Object obj)                                                       构造并初始化一个与指定的 object{x, y}或object{left, top} 对象具有相同位置
+    new Point(Float x, Float y)                                                 在坐标空间中指定的 (x, y) 位置构造
+属性:
+    Float       x                                                               X 坐标。
+    Float       y                                                               Y 坐标。
+方法:
+    void        move(Float x, Float y)                                          将此点移动到 (x, y) 坐标平面中的指定位置。
+    void        translate(Float dx, Float dy)                                   平移 (x, y) 位置的点，沿 x 轴平移 dx，沿 y 轴平移 dy，移动后得到点 (x + dx, y + dy)。
+    Float       distance(Float x, Float y)                                      从此 两坐标 的距离
+    Float       distance(Point pt)                                              从此 两坐标 的距离
+---------------------------------------------------------------------------------------------------------
+类 Dimension 类用于封装宽度和高度尺寸。
+构造:
+    new Dimension()                                                             创建 Dimension 的一个实例（宽度为零，高度为零）。
+    new Dimension(Float width, Float height)                                    构造一个 Dimension，并将其初始化为指定宽度和高度。
+    new Dimension(Dimension d)                                                  创建 Dimension 的一个实例（宽度和高度与指定的 dimension 相同）。
+    new Dimension(Object obj)                                                   创建 Dimension 的一个实例（宽度和高度与指定的 obj {width, height} 相同）。
+属性:
+    Float       width                                                           宽度
+    height      height                                                          高度
+方法:
+    void        setSize(Dimension d)                                            将 Dimension 对象的大小设置为指定大小。
+    void        setSize(Float width, Float height)                              将此 Dimension 对象的大小设置为指定的宽度和高度。
+---------------------------------------------------------------------------------------------------------
+类 Rectangle extends Point, Dimension 用于封装描述通过位置 (x, y) 和尺寸 (w x h) 定义的矩形。
+构造:
+    new Rectangle()                                                             构造一个新的 Rectangle，其左上角的坐标为（0，0），宽度和高度均为零。
+    new Rectangle(Rectangle r)                                                  构造一个新的 Rectangle，并将其初始化，以匹配指定 Rectangle 的值。
+    new Rectangle(Dimension d)                                                  构造一个新的 Rectangle，其左上角为（0，0），其宽度和高度由 Dimension 参数指定。
+    new Rectangle(Point p)                                                      构造一个新的 Rectangle，其左上顶点是指定的 Point，并且其宽度和高度均为零。
+    new Rectangle(Point p, Dimension d)                                         构造一个新的 Rectangle，其左上角由 Point 参数指定，其宽度和高度由 Dimension 参数指定。
+    new Rectangle(int width, int height)                                        构造一个新的 Rectangle，其左上角的坐标为（0，0），而其宽度和高度由同名的参数指定。
+    new Rectangle(int x, int y, int width, int height)                          构造一个新的 Rectangle，其左上角被指定为（x，y），而其宽度和高度由同名称的参数指定。
+属性:
+    Float       x
+    Float       y
+    Float       width
+    Float       height
+方法:
+    Boolean     contains(int x, int y)                                          检查此 Rectangle 是否包含指定位置的点（x，y）。
+    Boolean     contains(int X, int Y, int W, int H)                            检查此 Rectangle 是否完整地包含指定位置（X，Y）上具有指定尺寸（W，H）的 Rectangle。
+    Boolean     contains(Point p)                                               检查此 Rectangle 是否包含指定的 Point。
+    Boolean     contains(Rectangle r)                                           检查此 Rectangle 是否完整地包含指定的 Rectangle。
+    Point       getLocation()                                                   返回此 Rectangle 的位置。
+    Dimension   getSize()                                                       获得此 Rectangle 的大小，用返回的 Dimension 表示。
+    void        grow(int h, int v)                                              在水平方向和垂直方向上重新设置 Rectangle 的大小。
+    Rectangle   intersection(Rectangle r)                                       计算此 Rectangle 与指定 Rectangle 的交集。
+    boolean     intersects(Rectangle r)                                         确定此 Rectangle 是否与指定 Rectangle 相交。
+    void        setLocation(int x, int y)                                       将此 Rectangle 移动到指定位置。
+    void        setLocation(Point p)                                            将此 Rectangle 移动到指定位置。
+    void        setRect(double x, double y, double width, double height)        将此 Rectangle 的边界设置为指定的 x、y、width 和 height。
+    void        setSize(Dimension d)                                            设置此 Rectangle 的大小，以匹配指定的 Dimension。
+    void        setSize(int width, int height)                                  将此 Rectangle 的大小设置为指定的宽度和高度。
+    void        translate(int x, int y)                                         将此 Rectangle 沿 x 坐标轴向右，沿 y 坐标轴向下移动指定距离。
+    Rectangle   union(Rectangle r)                                              计算此 Rectangle 与指定 Rectangle 的并集。
+
+---------------------------------------------------------------------------------------------------------
+类 Drag extends EventListener 用于拖动位置 position : absolute | relative
+构造:
+    new Drag(HTMLElement listener, HTMLElement target)                          构造一个新的可拖动对象 参数为监听,被拖动对象
+    new Drag(HTMLElement element)                                               构造一个新的可拖动对象 监听目标为同一对象
+属性:
+    Boolean     disabled                                                        设置或获取表明用户是否可与该对象交互的值
+    Integer     minX                                                            最小拖动坐标x 默认无限制
+    Integer     minY                                                            最小拖动坐标y 默认无限制
+    Integer     maxX                                                            最大拖动坐标x 默认无限制
+    Integer     maxY                                                            最大拖动坐标y 默认无限制
+方法:
+    Point       setLocation(Point p)                                            设置目标对象坐标,此方法会在拖动和移动时候自动被调用,子类覆盖此方法可实现拖动自定义
+    Point       setLocation(Integer x, Integer y)                               同上,参数不同 返回拖动坐标
+    Point       moveBy(Point p)                                                 将目标移动指定位置并返回移动后的坐标
+    Point       moveBy(Integer x, Integer y)                                    将目标移动指定位置并返回移动后的坐标
+    Point       moveTo(Point p)                                                 将目标移动到指定位置并返回移动后的坐标
+    Point       moveTo(Integer x, Integer y)                                    将目标移动到指定位置并返回移动后的坐标
+    Point       getOffsets()                                                    返回目标对象坐标
+事件:           参数:
+    dragstart   EventObject evt                                                 开始拖动时发生 参数为格式化事件对象
+    dragend     EventObject evt                                                 结束拖动时发生 参数为格式化事件对象
+    drag        Point p                                                         拖动时持续发生 参数为拖动后坐标
+    move        Point p                                                         移动时持续发生 参数为移动后坐标
+说明:
+    移动方法不限制移动的范围 只有拖动才限制
+---------------------------------------------------------------------------------------------------------
+类 Resizable extends EventListener 用于调整大小
+构造:
+    new Resizable(HTMLElement element);                                         使用默认设置构造对象
+    new Resizable(HTMLElement element,ResizableStyles rs)                       使用制定的样式构造
+    new Resizable(HTMLElement element,ResizableStyles rs, Object argv);         使用指定样式和参数构造对象
+构造参数参考(默认):
+    ts默认:
+    Integer    resizeWidth : 0                                                  全局边框宽度
+    styles     resizeStyle : {}                                                 全局边框样式
+    styles  nw_resizeStyle : {}                                                 样式设置(左上)
+    styles   n_resizeStyle : {}                                                 样式设置(上)
+    styles  ne_resizeStyle : {}                                                 样式设置(右上)
+    styles   w_resizeStyle : {}                                                 样式设置(左)
+    styles    contextStyle : {}                                                 样式设置(中)
+    styles   e_resizeStyle : {}                                                 样式设置(右)
+    styles  sw_resizeStyle : {}                                                 样式设置(左下)
+    styles   s_resizeStyle : {}                                                 样式设置(下)
+    styles  se_resizeStyle : {}                                                 样式设置(右下)
+    styles        up0Style : {}                                                 样式设置(上)(左)
+    styles        up1Style : {}                                                 样式设置(上)(中)
+    styles        up2Style : {}                                                 样式设置(上)(右)
+    styles      down0Style : {}                                                 样式设置(下)(左)
+    styles      down1Style : {}                                                 样式设置(下)(中)
+    styles      down2Style : {}                                                 样式设置(下)(右)
+    styles      left0Style : {}                                                 样式设置(左)(上)
+    styles      left1Style : {}                                                 样式设置(左)(中)
+    styles      left2Style : {}                                                 样式设置(左)(下)
+    styles     right0Style : {}                                                 样式设置(右)(上)
+    styles     right1Style : {}                                                 样式设置(右)(中)
+    styles     right2Style : {}                                                 样式设置(右)(下)
+    argv默认:
+    Integer     minWidth   : 0                                                  最小宽度(不包括拖动用边框)
+    Integer     minHeight  : 0                                                  最大高度(不包括拖动用边框)
+    Integer     maxWidth   : 2147483647                                         最大宽度(不包括拖动用边框)
+    Integer     maxHeight  : 2147483647                                         最大高度(不包括拖动用边框)
+    Boolean     mousewheel : true                                               是否使用鼠标滚动控制的尺寸
+    Boolean     initResize : true                                               是否初始化大小调整 如不初始话则只作为镶边使用 所有的用户ui互动无效
+属性:
+    Integer     minWidth                                                        最小宽度(初始值同构造参数)
+    Integer     minHeight                                                       最大高度(初始值同构造参数)
+    Integer     maxWidth                                                        最大宽度(初始值同构造参数)
+    Integer     maxHeight                                                       最大高度(初始值同构造参数)
+    Boolean     disabled                                                        设置或获取表明用户是否可与该对象交互的值
+    HTMLElement table                                                           包装用表格对象
+事件:           参数:
+    resizeend   EventObject evt                                                 结束更改对象的尺寸时触发 参数为格式化事件
+    resize      Rectangle r                                                     大小改变后持续触发 参数为改变区域
+    resizestart EventObject evt                                                 开始更改对象的尺寸时触发 参数为格式化事件
+方法:
+    Rectangle   resizeBy(Integer width, Integer height)                         更改当前位置缩放指定的偏移量。 参数:偏移尺寸 返回设置后的区域
+    Rectangle   resizeTo(Integer width, Integer height)                         将大小更改为指定的宽度和高度值。参数:新尺寸 返回设置后的区域
+    Rectangle   resizeTo(Dimension d)                                           同上参数不同
+    Rectangle   setRect(int x, int y, int width, int height)                    设置区域 返回设置后的区域
+    Rectangle   setRect(Rectangle r)                                            同上参数不同
+    Rectangle   getRect()                                                       返回对象当前区域
+    Rectangle   setLocation(int x, int y)                                       将此 Rectangle 移动到指定位置。返回设置后的区域
+    Rectangle   setLocation(Point p)                                            同上参数不同
+    Rectangle   translate(int x, int y)                                         将此 Rectangle 沿 x 坐标轴向右，沿 y 坐标轴向下移动指定距离。
+    Rectangle   zoom(Float z)                                                   放大倍数(1为不放大)
+说明:
+    设置方法不受最大最小尺寸限制,只鼠标触发才限制
+---------------------------------------------------------------------------------------------------------
+类 AutoTop extends EventListener 用于自动置顶
+构造:
+    new AutoTop(HTMLElement element);
+    new AutoTop(HTMLElement element, Object argv);
+构造参数参考(默认):
+    String       eventName : "click"                                            自动触发事件名
+    HTMLElement   listener : element                                            监听对象 默认为目标对象
+属性:
+    Boolean     disabled                                                        设置或获取表明用户是否可与该对象交互的值
+事件:           参数:
+    ontop       Integer zIndex                                                  当置顶时发生 参数为新的 zIndex层次
+方法:
+    Integer     setTop();                                                       置顶 并返回新的层次
+    Integer     setTop(Integer zIndex);                                         设置为指定层并返回新的层次
+    Integer     getMax();                                                       返回当前页面中最大的zIndex
+    String      getZIndex();                                                    返回当前对象的层次
+---------------------------------------------------------------------------------------------------------
+类 Dialog extends EventListener 基本对话框
+构造:
+    new Dialog(HTMLElement element);                                            使用默认样式和参数构造
+    new Dialog(HTMLElement element, argv);                                      使用指定参数构造
+构造参数参考(默认):
+    Object          theme  : Theme.Dialog                                       对话筐样式
+    Integer       minWidth : 0                                                  最小宽度 宽高度并不包括标题栏和关闭按钮的尺寸
+    Integer      minHeight : 0                                                  最小高度 宽高度并不包括标题栏和关闭按钮的尺寸
+    Integer       maxWidth : 2147483647                                         最大宽度 宽高度并不包括标题栏和关闭按钮的尺寸
+    Integer      maxHeight : 2147483647                                         最大高度 宽高度并不包括标题栏和关闭按钮的尺寸
+    Boolean          close : true                                               关闭按钮
+    Boolean           drag : true                                               是否允许拖动
+    Boolean      resizable : true                                               是否允许调整大小
+    Boolean        autotop : true                                               自动置顶
+    String           scope : "window"                                           窗口范围 决定了open left top相对坐标和是随窗口滚动 也可以是  "document"
+事件:           参数:
+    open                                                                        打开时发生
+    close                                                                       关闭前发生
+    closed                                                                      关闭后发生
+    dispose                                                                     资源释放后发生
+    move        Point p                                                         移动时发生 参数移动后坐标,不包括标题栏和边筐
+    resize      Rectangle r                                                     改变尺寸时发生 参数改变后区域 不包括标题栏和边筐
+方法:
+    boolean     open({modal:true,title:null,width:"auto", height:"auto",left:"center",top:"middle"})
+                                                                                打开 成功返回 true
+    boolean     close()                                                         关闭 成功返回 true
+    void        setTitle(String title)                                          重新设置标题 窗口类型为 popup时此操作为空操作
+    Point       moveTo(x, y)                                                    移动到指定坐标 不包括标题栏和边筐
+    Point       moveBy(x, y)                                                    移动到相关偏移坐标 返回移动后新坐标 不包括标题栏和边筐
+    Dimension   resizeTo(width, height)                                         将窗口的大小更改为指定的宽度和高度值。 返回新的尺寸 不包括标题栏和边筐
+    Dimension   resizeBy(width, height)                                         将窗口大到小更改指定的高度和宽度偏移值 返回新的尺寸 不包括标题栏和边筐
+    Rectangle   zoom(z)                                                         窗口放大倍数 1倍 返回新的区域 不包括标题栏和边筐
+    Boolean     closed()                                                        检查是否已经关闭
+    Rectangle   getRect()                                                       返回当前区域 不包括标题栏和边筐
+    Dimension   getTitleBarDimension()                                          返回标题栏尺寸
+    Integer     setTop();                                                       置顶 并返回新的层次
+    Integer     setTop(Integer zIndex);                                         设置为指定层并返回新的层次
+
+------------------------------------消息对话框-------------------------------------
+Dialog MessageBox.base(element[, argv])
+    argv参数:
+    button:{}                                       按钮
+    其它参数与方法继承 Dialog
+Dialog MessageBox.alert(value[, Event])               消息提示 结束返回事件
+Dialog MessageBox.confirm(value[, Event])             显示一个确认对话框，其中包含一个可选的消息和确定取消按钮 事件返回一个参数 true为ok按钮 false为取消按钮或关闭窗口
+Dialog MessageBox.prompt(sMessage, sDefaultValue, callback)显示一个提示对话框，其中带有一条消息和一个输入框。
+Dialog MessageBox.prompt(sMessage, callback)
+
+------------------------------------对话框主题样式-------------------------------------
+ResizableStyles Theme.Dialog.resize                 边筐样式        (必须)
+Style           Theme.Dialog.Bar.basic              标题栏目条样式  (可选)
+Style           Theme.Dialog.Bar.title              标题样式 (可选)
+Style           Theme.Dialog.Bar.close              关闭按钮样式 (可选)
+Style           Theme.Dialog.Bar.close_mouseover    关闭按钮鼠标进入样式 (可选)
+Style           Theme.Dialog.Bar.close_mouseout     关闭按钮鼠标离开样式 (可选)
+
+Style           Theme.Dialog.MessageBox.content     对话筐内容容器样式 (必须)
+Style           Theme.Dialog.MessageBox.buttonBar   对话筐按钮容器样式 (必须)
+Style           Theme.Dialog.Button.basic           按钮基本样式 (必须)
+Style           Theme.Dialog.Button.mouseover       按钮鼠标进入样式 (必须)
+Style           Theme.Dialog.Button.mouseout        按钮鼠标离开样式 (必须)
+Style           Theme.Dialog.Input.base             输入筐基本样式 (必须)
+Style           Theme.Dialog.Input.focus            输入筐获得焦点样式 (必须)
+Style           Theme.Dialog.Input.blur             输入筐失去焦点样式 (必须)
